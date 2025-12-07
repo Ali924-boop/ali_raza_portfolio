@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 
 // Premium Stats
 const stats = [
@@ -25,10 +23,23 @@ const projects = [
     name: "Maas Technical Cleaning Services",
     description: "Professional cleaning service website built with Next.js.",
     tech: ["React", "Next.js", "Tailwind CSS", "Express", "MongoDB"],
-    images: ["/Project2/p1.png", "/Project2/p2.png", "/Project2/p3.png", "/Project2/p4.png"],
+    images: ["/project2/p1.png", "/project2/p2.png", "/project2/p3.png", "/project2/p4.png"],
     demo: "https://www.maastechnicalcleaning.com/",
     github: "#",
   },
+  {
+  name: "Snaap Reel",
+  description: "A short video sharing platform inspired by Reels and TikTok, built with modern web technologies.",
+  tech: ["React", "Next.js", "Tailwind CSS", "Node.js", "MongoDB", "Express", "Cloudinary"],
+  images: [
+    "/project3/p1.png",
+    "/project3/p2.png",
+    "/project3/p3.png",
+    "/project3/p4.png"
+  ],
+  demo: "#",  
+  github: "#",
+},
 ];
 
 // Medium Image Slider
@@ -101,7 +112,7 @@ const Projects: React.FC = () => {
         >
           {stats.map((stat, i) => (
             <motion.div key={i} className="text-center">
-              <p className="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text shadow-md">
+              <p className="text-3xl md:text-4xl font-extrabold bg-gradient-to-br from-blue-400 to-purple-500 text-transparent bg-clip-text shadow-md">
                 {stat.number}
               </p>
               <p className="text-gray-300 mt-1">{stat.label}</p>
