@@ -1,38 +1,60 @@
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  FaFacebook,
-  FaGithub,
-  FaLinkedin,
-  FaInstagram,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaFacebook, FaGithub, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { ToastContainer, toast, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Contacts: React.FC = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [status, setStatus] = useState(""); // success / error / empty
+const Contacts = () => {
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // 🔹 Future: connect to API / send email
-    console.log(formData);
-    setStatus("success");
-    setFormData({ name: "", email: "", message: "" });
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        toast.success("Your message has been sent!");
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        toast.error(data.message || "Something went wrong. Try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      toast.error("Something went wrong. Try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <section className="w-full bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white py-24 px-4 md:px-6">
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
       <div className="max-w-4xl mx-auto">
         {/* Heading */}
         <motion.h2
@@ -62,7 +84,6 @@ const Contacts: React.FC = () => {
               required
               className="bg-gray-800/50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
             />
-
             <motion.input
               whileFocus={{ scale: 1.02 }}
               type="email"
@@ -73,7 +94,6 @@ const Contacts: React.FC = () => {
               required
               className="bg-gray-800/50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300"
             />
-
             <motion.textarea
               whileFocus={{ scale: 1.02 }}
               name="message"
@@ -84,103 +104,47 @@ const Contacts: React.FC = () => {
               rows={6}
               className="bg-gray-800/50 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 resize-none"
             />
-
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
-              className="bg-blue-400 text-black font-semibold rounded-lg px-6 py-3 hover:bg-yellow-500 transition-colors duration-300"
+              className="flex justify-center items-center gap-2 bg-blue-400 text-black font-semibold rounded-lg px-6 py-3 hover:bg-yellow-500 transition-colors duration-300"
             >
-              Send Message
+              {loading ? (
+                <svg
+                  className="animate-spin h-5 w-5 text-black"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v8H4z"
+                  ></path>
+                </svg>
+              ) : (
+                "Send Message"
+              )}
             </motion.button>
           </form>
 
-          {/* Status Message */}
-          {status === "success" && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="mt-6 text-green-400 font-medium text-center"
-            >
-              Thank you! Your message has been sent.
-            </motion.p>
-          )}
-
-          {/* Social Media Links */}
+          {/* Social Icons */}
           <div className="mt-6 flex justify-center gap-6 text-gray-300 text-2xl">
-            <motion.a
-              whileHover={{ scale: 1.2, color: "#0A66C2" }}
-              href="https://www.facebook.com/profile.php?id=61580827410019"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <FaFacebook />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.2, color: "#0A66C2" }}
-              href="www.linkedin.com/in/ali-dev-21b666397"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.2, color: "#333" }}
-              href="https://github.com/Ali924-boop"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-            >
-              <FaGithub />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.2, color: "#E1306C" }} // Instagram Pink
-              href="https://www.instagram.com/alidev14/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </motion.a>
-            <motion.a
-              whileHover={{ scale: 1.2, color: "#25D366" }} // WhatsApp Green
-              href="https://wa.me/923020178286" // WhatsApp link
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Chat on WhatsApp"
-            >
-              <FaWhatsapp size={24} />
-            </motion.a>
+            <motion.a whileHover={{ scale: 1.2, color: "#0A66C2" }} href="https://www.facebook.com/profile.php?id=61580827410019" target="_blank" rel="noopener noreferrer"><FaFacebook /></motion.a>
+            <motion.a whileHover={{ scale: 1.2, color: "#0A66C2" }} href="https://www.linkedin.com/in/ali-dev-21b666397" target="_blank" rel="noopener noreferrer"><FaLinkedin /></motion.a>
+            <motion.a whileHover={{ scale: 1.2, color: "#333" }} href="https://github.com/Ali924-boop" target="_blank" rel="noopener noreferrer"><FaGithub /></motion.a>
+            <motion.a whileHover={{ scale: 1.2, color: "#E1306C" }} href="https://www.instagram.com/alidev14/" target="_blank" rel="noopener noreferrer"><FaInstagram /></motion.a>
+            <motion.a whileHover={{ scale: 1.2, color: "#25D366" }} href="https://wa.me/923020178286" target="_blank" rel="noopener noreferrer"><FaWhatsapp size={24} /></motion.a>
           </div>
-
-          {/* Optional Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-6 text-center text-gray-400"
-          >
-            <p>
-              Email:{" "}
-              <a
-                href="mailto:alirazasandha5@gmail.com"
-                className="text-blue-400 hover:underline"
-              >
-                alirazasandha5@gmail.com
-              </a>
-            </p>
-            <p className="mt-1">
-              Phone:{" "}
-              <a
-                href="tel:+923020178286"
-                className="text-blue-400 hover:underline"
-              >
-                +92 302 0178286
-              </a>
-            </p>
-          </motion.div>
         </motion.div>
       </div>
     </section>

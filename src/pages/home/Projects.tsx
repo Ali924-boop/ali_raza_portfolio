@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Premium Stats
@@ -28,46 +28,35 @@ const projects = [
     github: "#",
   },
   {
-  name: "Snaap Reel",
-  description: "A short video sharing platform inspired by Reels and TikTok, built with modern web technologies.",
-  tech: ["React", "Next.js", "Tailwind CSS", "Node.js", "MongoDB", "Express", "Cloudinary"],
-  images: [
-    "/project3/p1.png",
-    "/project3/p2.png",
-    "/project3/p3.png",
-    "/project3/p4.png"
-  ],
-  demo: "#",  
-  github: "#",
-},
+    name: "Snaap Reel",
+    description: "A short video sharing platform inspired by Reels and TikTok, built with modern web technologies.",
+    tech: ["React", "Next.js", "Tailwind CSS", "Node.js", "MongoDB", "Express", "Cloudinary"],
+    images: ["/project3/p1.png", "/project3/p2.png", "/project3/p3.png", "/project3/p4.png"],
+    demo: "#",
+    github: "#",
+  },
 ];
 
-// Medium Image Slider
-const ImageSlider = ({ images }: { images: string[] }) => {
-  const [index, setIndex] = React.useState(0);
-  const intervalRef = React.useRef<NodeJS.Timeout | null>(null);
+// Image Slider Component (SSR Safe)
+const ImageSlider = ({ images, projectName }: { images: string[]; projectName: string }) => {
+  const [index, setIndex] = useState(0);
 
-  const startSlide = () => {
-    intervalRef.current = setInterval(() => {
+  // Auto-slide using useEffect (only runs on client)
+  useEffect(() => {
+    const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
     }, 3000);
-  };
 
-  const stopSlide = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current);
-    setIndex(0);
-  };
+    return () => clearInterval(interval);
+  }, [images.length]);
 
   return (
-    <div
-      className="w-full h-44 md:h-52 overflow-hidden rounded-xl relative shadow-lg"
-      onMouseEnter={startSlide}
-      onMouseLeave={stopSlide}
-    >
+    <div className="w-full h-44 md:h-52 overflow-hidden rounded-xl relative shadow-lg">
       <AnimatePresence mode="wait">
         <motion.img
           key={index}
           src={images[index]}
+          alt={`${projectName} screenshot ${index + 1}`}
           className="w-full h-full object-cover rounded-xl"
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -76,23 +65,21 @@ const ImageSlider = ({ images }: { images: string[] }) => {
         />
       </AnimatePresence>
 
-      {/* Overlay with Icons */}
+      {/* Overlay for hover effect */}
       <motion.div
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
         className="absolute inset-0 bg-black/30 flex items-center justify-center gap-5 rounded-xl transition-opacity"
-      >
-      </motion.div>
+      />
     </div>
   );
 };
 
-// Projects Component with Medium Cards
+// Projects Component
 const Projects: React.FC = () => {
   return (
     <section className="w-full bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white py-20 px-4 md:px-6 relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10">
-
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -134,7 +121,7 @@ const Projects: React.FC = () => {
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="bg-white/10 border border-gray-700 rounded-xl p-4 shadow-xl backdrop-blur-lg transition-shadow duration-300 cursor-pointer relative"
             >
-              <ImageSlider images={project.images} />
+              <ImageSlider images={project.images} projectName={project.name} />
 
               <h3 className="text-xl font-semibold mt-3 mb-1 text-blue-400">
                 {project.name}
@@ -157,6 +144,7 @@ const Projects: React.FC = () => {
                 <a
                   href={project.demo}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="px-4 py-1.5 bg-blue-400 hover:bg-yellow-600 text-black rounded-md font-medium transition-colors shadow-sm text-sm"
                 >
                   Demo
@@ -164,6 +152,7 @@ const Projects: React.FC = () => {
                 <a
                   href={project.github}
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="px-4 py-1.5 border border-gray-300 rounded-md text-white hover:bg-gray-700 transition-colors shadow-sm text-sm"
                 >
                   GitHub

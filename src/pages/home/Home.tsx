@@ -8,7 +8,7 @@ import Services from './Services';
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-800 via-gray-600 to-black">
+    <div className="min-h-screen bg-gradient-to-br from-gray-800 via-gray-600 to-black">
       <Hero />
       <About />
       <Projects />

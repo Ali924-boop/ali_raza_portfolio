@@ -1,9 +1,9 @@
-import React from "react";
+"use client";
 import Image from "next/image";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center bg-linear-to-br from-black via-gray-900 to-gray-800 text-white relative overflow-hidden">
+    <section className="min-h-screen flex items-center bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white relative overflow-hidden">
       
       {/* Background Glow Effects */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500/20 blur-3xl rounded-full"></div>
@@ -47,7 +47,7 @@ const Hero = () => {
 
         {/* Right Image Section */}
         <div className="flex-1 flex justify-center lg:justify-end">
-          <div className="p-[3px] rounded-2xl bg-linear-to-br from-blue-500 to-purple-500 shadow-2xl">
+          <div className="p-[3px] rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 shadow-2xl">
             <Image
               src="/hero.png"
               alt="Ali Raza"

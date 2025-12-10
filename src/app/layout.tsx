@@ -16,7 +16,58 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Ali Raza Portfolio",
-  description: "",
+  description:
+    "Ali Raza is a Full Stack Developer specializing in Next.js, MERN Stack, and responsive modern web applications. Explore projects, skills, and contact details.",
+  keywords: [
+    "Ali Raza",
+    "Full Stack Developer",
+    "Next.js Developer",
+    "React Developer",
+    "MERN Stack",
+    "Web Developer",
+    "Software Engineer",
+    "Portfolio Website",
+  ],
+  authors: [{ name: "Ali Raza" }],
+  creator: "Ali Raza",
+
+  // Your real domain
+  metadataBase: new URL("https://ali-raza-portfolio-bice.vercel.app"),
+
+  openGraph: {
+    title: "Ali Raza – Full Stack Developer Portfolio",
+    description:
+      "Explore projects and skills of Ali Raza, a Full Stack Developer experienced in Next.js & MERN Stack.",
+    url: "https://ali-raza-portfolio-bice.vercel.app",
+    siteName: "Ali Raza Portfolio",
+    images: [
+      {
+        url: "/hero.png",
+        width: 1200,
+        height: 630,
+        alt: "Ali Raza Portfolio OG Image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Ali Raza – Full Stack Developer Portfolio",
+    description:
+      "Full Stack Developer Portfolio built with Next.js and Tailwind CSS.",
+    images: ["/hero.png"],
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
+
+  alternates: {
+    canonical: "https://ali-raza-portfolio-bice.vercel.app",
+  },
 };
 
 export default function RootLayout({
@@ -32,6 +83,24 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+
+        {/* Schema.org JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Ali Raza",
+              jobTitle: "Full Stack Developer",
+              url: "https://ali-raza-portfolio-bice.vercel.app",
+              sameAs: [
+                "https://github.com/Ali924-boop",
+                "www.linkedin.com/in/ali-dev-21b666397",
+              ],
+            }),
+          }}
+        />
       </body>
     </html>
   );

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
 import Image from "next/image";
 
-// Sample testimonial data
+// Testimonial Data
 const testimonials = [
   {
     name: "John Doe",
@@ -29,7 +29,7 @@ const testimonials = [
   },
 ];
 
-const Testimonials = () => {
+const Testimonials: React.FC = () => {
   return (
     <section className="w-full bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white py-24 px-4 md:px-6 relative overflow-hidden">
       <div className="max-w-6xl mx-auto relative z-10">
@@ -57,13 +57,15 @@ const Testimonials = () => {
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="bg-white/5 border border-gray-700 rounded-xl p-6 shadow-lg backdrop-blur-xl cursor-pointer"
             >
+              {/* Client Info */}
               <div className="flex items-center gap-4 mb-4">
                 <Image
                   src={test.image}
-                  alt={test.name}
+                  alt={`${test.name} - ${test.designation} testimonial`}
                   width={65}
                   height={65}
                   className="rounded-full object-cover"
+                  priority={true} // Ensure images load fast for first paint
                 />
                 <div>
                   <h3 className="text-lg font-semibold text-blue-400">
@@ -72,14 +74,41 @@ const Testimonials = () => {
                   <p className="text-gray-400 text-sm">{test.designation}</p>
                 </div>
               </div>
-              <p className="text-gray-300 italic relative pl-6">
+
+              {/* Testimonial Feedback */}
+              <blockquote className="text-gray-300 italic relative pl-6">
                 <FaQuoteLeft className="absolute left-0 top-0 text-blue-400 text-xl" />
                 {test.feedback}
-              </p>
+              </blockquote>
             </motion.div>
           ))}
         </motion.div>
       </div>
+
+      {/* JSON-LD Structured Data for Reviews */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            itemListElement: testimonials.map((t, idx) => ({
+              "@type": "Review",
+              position: idx + 1,
+              author: {
+                "@type": "Person",
+                name: t.name,
+              },
+              reviewBody: t.feedback,
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: 5,
+                bestRating: 5,
+              },
+            })),
+          }),
+        }}
+      />
     </section>
   );
 };

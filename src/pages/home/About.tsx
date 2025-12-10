@@ -12,7 +12,7 @@ import { HiOutlineTv } from "react-icons/hi2";
 // Downloaded Lottie JSON from LottieFiles, saved in public/lottie
 import developerAnimation from "../../../public/lottie/Software Devlopment.json";
 
-const About: React.FC = () => {
+const About= () => {
   return (
     <section className="w-full bg-gradient-to-br from-black via-gray-900 to-gray-800 text-white py-24 px-4 md:px-6 relative overflow-hidden">
       {/* Background Glow */}
