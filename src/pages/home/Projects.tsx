@@ -35,6 +35,14 @@ const projects = [
     demo: "#",
     github: "#",
   },
+  {
+  name: "Codes Wear",
+  description: "An E-commerce platform for clothing, built with modern web technologies to handle products, orders, and payments efficiently.",
+  tech: ["React", "Next.js", "Tailwind CSS", "Node.js", "MongoDB", "Express", "Cloudinary"],
+  images: ["/project4/p1.png", "/project4/p2.png", "/project4/p3.png", "/project5/p4.png"],
+  demo: "https://codeswear-mauve.vercel.app/",
+  github: "#",
+},
 ];
 
 // Image Slider Component (SSR Safe)
