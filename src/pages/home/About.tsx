@@ -25,7 +25,7 @@ const About= () => {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-3xl md:text-5xl font-extrabold text-center mb-12"
+          className="text-3xl md:text-5xl font-extrabold text-center"
         >
           About <span className="text-blue-400">Me</span>
         </motion.h2>
@@ -90,7 +90,7 @@ const About= () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
-          className="grid md:grid-cols-2 gap-10 mt-16"
+          className="grid md:grid-cols-2 gap-10"
         >
           {/* What I Do */}
           <div className="bg-white/5 border border-gray-700 p-8 rounded-xl shadow-lg backdrop-blur-xl hover:shadow-2xl transition-shadow duration-500">
@@ -163,7 +163,7 @@ const About= () => {
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mt-20 bg-white/5 border border-gray-700 p-10 rounded-xl backdrop-blur-xl shadow-xl hover:shadow-2xl transition-all duration-300"
+          className="mt-10 bg-white/5 border border-gray-700 p-10 rounded-xl backdrop-blur-xl shadow-xl hover:shadow-2xl transition-all duration-300"
         >
           <h3 className="text-3xl font-semibold mb-4 text-blue-400">
             My Mission

@@ -47,12 +47,12 @@ const Hero = () => {
 
         {/* Right Image Section */}
         <div className="flex-1 flex justify-center lg:justify-end">
-          <div className="p-[3px] rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 shadow-2xl">
+          <div className="p-[1px] rounded-2xl bg-gradient-to-br from-blue-500 to-purple-500 shadow-2xl">
             <Image
               src="/hero.png"
               alt="Ali Raza"
-              width={350}
-              height={350}
+              width={300}
+              height={300}
               className="rounded-2xl object-cover"
             />
           </div>

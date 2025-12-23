@@ -5,6 +5,7 @@ import Projects from './Projects';
 import Contacts from './Contacts';
 import Testimonials from './Testimonials';
 import Services from './Services';
+import WebsiteTypes from './WebsiteTypes';
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Hero />
       <About />
       <Projects />
+      <WebsiteTypes />
       <Services />
       <Contacts />
       <Testimonials />
