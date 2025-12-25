@@ -6,6 +6,7 @@ import Contacts from './Contacts';
 import Testimonials from './Testimonials';
 import Services from './Services';
 import WebsiteTypes from './WebsiteTypes';
+import BlogsPage from '@/app/blogs/page';
 
 const Home = () => {
   return (
@@ -13,11 +14,11 @@ const Home = () => {
       <Hero />
       <About />
       <Projects />
+      <BlogsPage />
       <WebsiteTypes />
       <Services />
       <Contacts />
       <Testimonials />
-
     </div>
   );
 };

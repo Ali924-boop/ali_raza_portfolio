@@ -70,6 +70,15 @@ const Navbar = () => {
                 Projects
               </Link>
             </li>
+            <li>
+              <Link
+                href="/blogs"
+                onClick={closeMenu}
+                className="block py-2 px-3 md:p-0 hover:text-blue-400"
+              >
+                Blogs
+              </Link>
+            </li>
 
             <li>
               <Link
