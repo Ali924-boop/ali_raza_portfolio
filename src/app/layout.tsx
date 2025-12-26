@@ -32,7 +32,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Ali Raza" }],
   creator: "Ali Raza",
 
-  // Your real domain
   metadataBase: new URL("https://ali-raza-portfolio-bice.vercel.app"),
 
   openGraph: {
@@ -46,7 +45,7 @@ export const metadata: Metadata = {
         url: "/hero.png",
         width: 1200,
         height: 630,
-        alt: "Ali Raza Portfolio OG Image",
+        alt: "Ali Raza Portfolio",
       },
     ],
     locale: "en_US",
@@ -73,11 +72,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
+      <head>
+        {/* ✅ Google AdSense Verification Script */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1169411304409191"
+          crossOrigin="anonymous"
+        ></script>
+      </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -86,7 +94,7 @@ export default function RootLayout({
         <FloatingCTAs />
         <Footer />
 
-        {/* Schema.org JSON-LD */}
+        {/* ✅ Schema.org JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -98,7 +106,7 @@ export default function RootLayout({
               url: "https://ali-raza-portfolio-bice.vercel.app",
               sameAs: [
                 "https://github.com/Ali924-boop",
-                "www.linkedin.com/in/ali-dev-21b666397",
+                "https://www.linkedin.com/in/ali-dev-21b666397",
               ],
             }),
           }}
