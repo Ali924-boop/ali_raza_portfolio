@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FloatingCTAs from "@/pages/floatingcta/Floatingcta";
+import FloatingCTAs from "../pages/floatingcta/Floatingcta"; // updated path
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -91,8 +92,25 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+
+        {/* ✅ Floating CTA Buttons */}
         <FloatingCTAs />
+
         <Footer />
+
+        {/* ================= BOTPRESS V3.5 POPUP CHAT ================= */}
+     
+    <Script
+  src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"
+  strategy="afterInteractive"
+/>
+
+<Script
+  src="https://files.bpcontent.cloud/2026/01/04/12/20260104124011-ZB13YQQX.js"
+  strategy="afterInteractive"
+/>
+    
+
 
         {/* ✅ Schema.org JSON-LD */}
         <script
