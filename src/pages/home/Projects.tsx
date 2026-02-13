@@ -39,6 +39,15 @@ const projects = [
     github: "#",
   },
   {
+    name: "Maza Juice App",
+    description:
+      "A modern juice delivery app built with React and Next.js.",
+    tech: ["React", "Next.js", "Tailwind CSS", "Express", "MongoDB"],
+    images: ["/project6/p1.png", "/project6/p2.png", "/project6/p3.png", "/project6/p4.png","/project6/p5.png","/project6/p6.png","/project6/p7.png","/project6/p8.png","/project6/p9.png"],
+    demo: "https://maza-juice.vercel.app/",
+    github: "#",
+  },
+  {
     name: "Snaap Reel",
     description:
       "A short video sharing platform inspired by Reels and TikTok, built with modern web technologies.",
