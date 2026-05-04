@@ -31,7 +31,7 @@ const projects = [
   description: "A full-stack e-commerce platform with product listings, cart management, secure checkout, and order tracking. Built for a seamless shopping experience.",
   tech: ["React", "Next.js", "Tailwind CSS", "Node.js", "MongoDB", "Express", "Cloudinary"],
   images: ["/project7/p7-1.png","/project7/p7-2.png","/project7/p7-3.png","/project7/p7-4.png","/project7/p7-5.png","/project7/p7-6.png","/project7/p7-7.png","/project7/p7-8.png","/project7/p7-9.png","/project7/p7-10.png","/project7/p7-11.png"],
-  demo: "https://buyrova.vercel.app/",
+  demo: "https://buyrova-ecommerce.vercel.app/",
   github: "https://github.com/Ali924-boop",
 },
   {
