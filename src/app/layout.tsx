@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import FloatingCTAs from "../pages/floatingcta/Floatingcta"; // updated path
+import FloatingCTAs from "../components/floatingcta/Floatingcta"; // updated path
 import Script from "next/script";
 
 const geistSans = Geist({

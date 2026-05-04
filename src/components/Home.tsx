@@ -1,11 +1,11 @@
 import React from 'react';
-import Hero from './Hero';
-import About from './About';
-import Projects from './Projects';
-import Contacts from './Contacts';
-import Testimonials from './Testimonials';
-import Services from './Services';
-import WebsiteTypes from './WebsiteTypes';
+import Hero from './home/Hero';
+import About from './home/About';
+import Projects from './home/Projects';
+import Contacts from './home/Contacts';
+import Testimonials from './home/Testimonials';
+import Services from './home/Services';
+import WebsiteTypes from './home/WebsiteTypes';
 import BlogsPage from '@/app/blogs/page';
 
 const Home = () => {

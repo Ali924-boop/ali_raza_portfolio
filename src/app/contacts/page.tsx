@@ -1,4 +1,4 @@
-import Contacts from '@/pages/home/Contacts'
+import Contacts from '@/components/home/Contacts'
 import React from 'react'
 
 const page = () => {

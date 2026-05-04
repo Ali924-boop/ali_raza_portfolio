@@ -1,4 +1,4 @@
-import Projects from '@/pages/home/Projects'
+import Projects from '@/components/home/Projects'
 import React from 'react'
 
 const page = () => {
